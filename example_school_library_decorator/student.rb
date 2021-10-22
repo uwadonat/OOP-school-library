@@ -1,7 +1,16 @@
-require './person.rb'
+require_relative './classroom'
+require_relative './person'
+require_relative './rental'
+require_relative './teacher'
+require_relative './book'
+require 'date'
 
 class Student < Person
-  def initialize(age, classroom, name = "Unknown", parent_permission = true)
+  arrt_accessor :classroom
+
+  # rubocop:disable Style/OptionalBooleanParameter
+  def initialize(age, classroom, name = 'Unknown', parent_permission = true)
+    # rubocop:enable Style/OptionalBooleanParameter
     super(age, name, parent_permission)
     @classroom = classroom
   end
