@@ -1,4 +1,4 @@
-require './corrector.rb'
+require_relative './corrector.rb'
 
 class Person
   attr_accessor :name, :age
@@ -10,6 +10,11 @@ class Person
     @age = age
     @name = name
     @parent_permission = parent_permission
+    @rentals = []
+  end
+
+  def add_rental(book, date)
+    Rental.new(date, book, self)
   end
 
   def can_use_services?
