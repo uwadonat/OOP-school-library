@@ -6,4 +6,3 @@ class Corrector
 end
 
 donat = Corrector.new()
-puts donat.correct_name("uwamahorohahahahahsh")

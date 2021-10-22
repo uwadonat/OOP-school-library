@@ -1,7 +1,6 @@
-require 'active_record'
 require './corrector.rb'
 
-class Person < ActiveRecord::Base
+class Person
   attr_accessor :name, :age
   attr_reader :id
 
