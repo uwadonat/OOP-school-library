@@ -3,7 +3,7 @@ class Book
   attr_reader :id
 
   def initialize(author, title)
-    @id = random.rand(1..1000)
+    @id = Random.rand(1..1000)
     @rentals = []
     @title = title
     @author = author
