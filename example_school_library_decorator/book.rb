@@ -9,7 +9,7 @@ class Book
     @author = author
   end
 
-  def sdd_rental(person, date)
+  def add_rental(person, date)
     Rental.new(date, self, person)
   end
 end

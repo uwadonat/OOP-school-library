@@ -13,8 +13,8 @@
 👤**Donat UWAMAHORO**
 
 - GitHub: [Donat Uwamahoro](https://github.com/uwadonat)
-- Twitter: [Donat Uwamahoro](https://www.linkedin.com/in/uwadonat)
-- LinkedIn: [Donat Uwamahoro](https://twitter.com/uwahoroDonat)
+- LinkedIn: [Donat Uwamahoro](https://www.linkedin.com/in/uwadonat)
+- Twitter: [Donat Uwamahoro](https://twitter.com/uwahoroDonat)
 
 ## 🤝 Contributing
 
