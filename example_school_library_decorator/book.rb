@@ -15,4 +15,8 @@ class Book
   def add_rental(person, date)
     Rental.new(date, self, person)
   end
+
+  def self.list
+    @@book_list
+  end
 end
