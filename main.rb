@@ -5,6 +5,12 @@ require_relative './example_school_library_decorator/teacher'
 require_relative './example_school_library_decorator/classroom'
 require_relative './example_school_library_decorator/rental'
 
+# rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity
+
+def person_instance(person)
+  person.instance_of?(Student) ? '[STUDENT]' : '[TEACHER]'
+end
+
 def create_student
   print 'Age: '
   age = gets.chomp
@@ -34,7 +40,7 @@ def create_teacher
   print 'Specialization: '
   specialization = gets.chomp
   puts
-  teacher = Teacher.new(age, specialization, name)
+  Teacher.new(age, specialization, name)
 end
 
 def create_book
@@ -54,47 +60,35 @@ def create_book
     sleep 1
     create_book
   end
+  display_menu
 end
 
 def create_rental
   persons = Person.list
   books = Book.list
-
   puts 'Select a book from the following list by number:'
   books.each do |book, i|
     puts "#{i}) ID: #{book.id}, Title: #{book.title}, Author: #{book.author}\n"
   end
-
   puts
   book = gets.chomp
-
-  if book.match(/[0-9]/) && book.to_i < book.length
-    book = book.to_i
-  else
-    puts 'Invalid input, try again'
-    create_rental
-  end
-
   puts 'Select a book from the following list by number:'
   persons.each do |person|
-    result = person.instance_of?(Student) ? '[STUDENT]' : '[TEACHER]'
+    result = person_instance(person)
     puts "#{result} ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
   end
-
   puts
   person = gets.chomp
-
-  if person.match(/[0-9]/) && person.to_i < person.length
+  if (person.match(/[0-9]/) && person.to_i < person.length) && (book.match(/[0-9]/) && book.to_i < book.length)
     person = person.to_i
   else
     puts 'Invalid input, try again'
     create_rental
   end
-
   print 'Date: '
   date = gets.chomp
-
   Rental.new(date, books[book], persons[person])
+  display_menu
 end
 
 def rental_list
@@ -109,12 +103,13 @@ def rental_list
     rental_list
   end
 
-  person = persons.filter { |person| person.id == id }
+  person = persons.filter { |per| per.id == id }
 
   person[0].rentals.each do |rental|
     book = rental.book
     puts "Date: #{rental.date}, Book: \"#{book.title}\" by #{book.author}"
   end
+  display_menu
 end
 
 def book_list
@@ -126,18 +121,20 @@ def book_list
     puts 'No books yet'
     puts
   end
+  display_menu
 end
 
 def person_list
   persons = Person.list
   persons.each do |person|
-    result = person.instance_of?(Student) ? '[STUDENT]' : '[TEACHER]'
+    result = person_instance(person)
     puts "#{result} ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
   end
   if persons.length.zero?
     puts 'No persons yet'
     puts
   end
+  display_menu
 end
 
 def create_person
@@ -156,6 +153,7 @@ def create_person
     sleep 1
     create_person
   end
+  display_menu
 end
 
 def display_menu
@@ -174,19 +172,14 @@ def display_menu
     book_list
   when '2'
     person_list
-    display_menu
   when '3'
     create_person
-    display_menu
   when '4'
     create_book
-    display_menu
   when '5'
     create_rental
-    display_menu
   when '6'
     rental_list
-    display_menu
   when '7'
     nil
   else
@@ -197,3 +190,5 @@ def display_menu
 end
 
 display_menu
+
+# rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity

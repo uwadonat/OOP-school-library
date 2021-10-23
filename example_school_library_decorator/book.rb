@@ -2,7 +2,7 @@ class Book
   attr_accessor :author, :title, :rentals
   attr_reader :id
 
-  @@book_list = []
+  @book_list = []
 
   def initialize(author, title)
     @id = Random.rand(1..1000)
@@ -17,6 +17,6 @@ class Book
   end
 
   def self.list
-    @@book_list
+    @book_list
   end
 end
