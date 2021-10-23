@@ -95,3 +95,34 @@ def create_rental
 
   Rental.new(date, books[book], persons[person])
 end
+
+def rental_list
+  persons = Person.list
+  print "ID of person: "
+  id = gets.chomp
+  puts
+  if id.match(/[0-9]/)
+    id = id.to_i
+  else
+    puts "Invalid input, try again"
+    rental_list()
+  end
+
+  person = persons.filter { |person| person.id == id }
+
+  person[0].rentals.each do |rental|
+    book = rental.book
+    puts "Date: #{rental.date}, Book: \"#{book.title}\" by #{book.author}"
+  end
+end
+
+def book_list
+  books = Book.list
+  books.each do |book|
+    puts "ID: #{book.id}, Title: #{book.title}, Author: #{book.author}\n"
+  end
+  if books.length == 0
+    puts "No books yet"
+    puts
+  end
+end
