@@ -126,3 +126,33 @@ def book_list
     puts
   end
 end
+
+def person_list
+  persons = Person.list
+  persons.each do |person|
+    result = person.instance_of?(Student) ? "[STUDENT]" : "[TEACHER]"
+    puts "#{result} ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
+  end
+  if persons.length == 0
+    puts "No persons yet" 
+    puts
+  end
+end
+
+def create_person
+  print "Do you want to create a Student (1) or a Teacher (2)? [Input the number]: "
+  input = gets.chomp
+  puts
+  
+  case input
+  when '1'
+    create_student()
+  when '2'
+    create_teacher()
+  else
+    puts "Invalid input, please try again!"
+    puts
+    sleep 1
+    create_person()
+  end
+end
