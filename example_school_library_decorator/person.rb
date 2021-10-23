@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require_relative './corrector'
 
 class Person
   attr_accessor :name, :age, :rentals
   attr_reader :id
 
-  @@person_list = [ ]
+  @@person_list = []
 
   # rubocop:disable Style/OptionalBooleanParameter
   def initialize(age, name = 'Unknown', parent_permission = true)

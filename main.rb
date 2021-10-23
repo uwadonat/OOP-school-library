@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative './example_school_library_decorator/book'
 require_relative './example_school_library_decorator/person'
 require_relative './example_school_library_decorator/student'
@@ -6,41 +8,42 @@ require_relative './example_school_library_decorator/classroom'
 require_relative './example_school_library_decorator/rental'
 
 def create_student
-  print "Age: "
+  print 'Age: '
   age = gets.chomp
-  print "Name: "
+  print 'Name: '
   name = gets.chomp
-  print "Has parent permission? [Y/N]: "
+  print 'Has parent permission? [Y/N]: '
   permission = gets.chomp
   puts
-  if permission == 'y' || permission == 'Y'
+  case permission
+  when 'y', 'Y'
     permission = true
-  elsif permission == 'n' || permission == 'N'
+  when 'n', 'N'
     permission = false
   else
     puts 'Invalid input, try again'
     puts
-    create_student()
+    create_student
   end
-  Student.new(age, Classroom.new("Comics"), name, permission)
+  Student.new(age, Classroom.new('Comics'), name, permission)
 end
 
 def create_teacher
-  print "Age: "
+  print 'Age: '
   age = gets.chomp
-  print "Name: "
+  print 'Name: '
   name = gets.chomp
-  print "Specialization: "
+  print 'Specialization: '
   specialization = gets.chomp
   puts
   teacher = Teacher.new(age, specialization, name)
 end
 
 def create_book
-  print "Title: "
+  print 'Title: '
   title = gets.chomp
   puts
-  print "Author: "
+  print 'Author: '
   author = gets.chomp
   puts
   book = Book.new(author, title)
@@ -51,7 +54,7 @@ def create_book
   else
     puts 'Invalid inputs try again'
     sleep 1
-    create_book()
+    create_book
   end
 end
 
@@ -59,24 +62,24 @@ def create_rental
   persons = Person.list
   books = Book.list
 
-  puts "Select a book from the following list by number:"
+  puts 'Select a book from the following list by number:'
   books.each do |book, i|
     puts "#{i}) ID: #{book.id}, Title: #{book.title}, Author: #{book.author}\n"
   end
-  
+
   puts
   book = gets.chomp
 
   if book.match(/[0-9]/) && book.to_i < book.length
     book = book.to_i
   else
-    puts "Invalid input, try again"
-    create_rental()
+    puts 'Invalid input, try again'
+    create_rental
   end
 
-  puts "Select a book from the following list by number:"
+  puts 'Select a book from the following list by number:'
   persons.each do |person|
-    result = person.instance_of?(Student) ? "[STUDENT]" : "[TEACHER]"
+    result = person.instance_of?(Student) ? '[STUDENT]' : '[TEACHER]'
     puts "#{result} ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
   end
 
@@ -86,11 +89,11 @@ def create_rental
   if person.match(/[0-9]/) && person.to_i < person.length
     person = person.to_i
   else
-    puts "Invalid input, try again"
-    create_rental()
+    puts 'Invalid input, try again'
+    create_rental
   end
 
-  print "Date: "
+  print 'Date: '
   date = gets.chomp
 
   Rental.new(date, books[book], persons[person])
@@ -98,14 +101,14 @@ end
 
 def rental_list
   persons = Person.list
-  print "ID of person: "
+  print 'ID of person: '
   id = gets.chomp
   puts
   if id.match(/[0-9]/)
     id = id.to_i
   else
-    puts "Invalid input, try again"
-    rental_list()
+    puts 'Invalid input, try again'
+    rental_list
   end
 
   person = persons.filter { |person| person.id == id }
@@ -121,8 +124,8 @@ def book_list
   books.each do |book|
     puts "ID: #{book.id}, Title: #{book.title}, Author: #{book.author}\n"
   end
-  if books.length == 0
-    puts "No books yet"
+  if books.length.zero?
+    puts 'No books yet'
     puts
   end
 end
@@ -130,69 +133,69 @@ end
 def person_list
   persons = Person.list
   persons.each do |person|
-    result = person.instance_of?(Student) ? "[STUDENT]" : "[TEACHER]"
+    result = person.instance_of?(Student) ? '[STUDENT]' : '[TEACHER]'
     puts "#{result} ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
   end
-  if persons.length == 0
-    puts "No persons yet" 
+  if persons.length.zero?
+    puts 'No persons yet'
     puts
   end
 end
 
 def create_person
-  print "Do you want to create a Student (1) or a Teacher (2)? [Input the number]: "
+  print 'Do you want to create a Student (1) or a Teacher (2)? [Input the number]: '
   input = gets.chomp
   puts
-  
+
   case input
   when '1'
-    create_student()
+    create_student
   when '2'
-    create_teacher()
+    create_teacher
   else
-    puts "Invalid input, please try again!"
+    puts 'Invalid input, please try again!'
     puts
     sleep 1
-    create_person()
+    create_person
   end
 end
 
 def display_menu
-  puts "Please choose an option enterin a number:"
-  puts "1 - List all books"
-  puts "2 - List all persons"
-  puts "3 - Create a person"
-  puts "4 - Create a book"
-  puts "5 - Create a rental"
-  puts "6 - List all rentals for a given person id"
-  puts "7 - Exit"
+  puts 'Please choose an option enterin a number:'
+  puts '1 - List all books'
+  puts '2 - List all persons'
+  puts '3 - Create a person'
+  puts '4 - Create a book'
+  puts '5 - Create a rental'
+  puts '6 - List all rentals for a given person id'
+  puts '7 - Exit'
   response = gets.chomp
   puts
   case response
   when '1'
-    book_list()
+    book_list
   when '2'
-    person_list()
-    display_menu()
+    person_list
+    display_menu
   when '3'
-    create_person()
-    display_menu()
+    create_person
+    display_menu
   when '4'
-    create_book()
-    display_menu()
+    create_book
+    display_menu
   when '5'
-    create_rental()
-    display_menu()
+    create_rental
+    display_menu
   when '6'
-    rental_list()
-    display_menu()
+    rental_list
+    display_menu
   when '7'
-    return
+    nil
   else
-    puts "invalid input, try again"
+    puts 'invalid input, try again'
     puts
-    display_menu()
+    display_menu
   end
 end
 
-display_menu()
+display_menu
