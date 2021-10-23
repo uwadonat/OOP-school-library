@@ -156,3 +156,43 @@ def create_person
     create_person()
   end
 end
+
+def display_menu
+  puts "Please choose an option enterin a number:"
+  puts "1 - List all books"
+  puts "2 - List all persons"
+  puts "3 - Create a person"
+  puts "4 - Create a book"
+  puts "5 - Create a rental"
+  puts "6 - List all rentals for a given person id"
+  puts "7 - Exit"
+  response = gets.chomp
+  puts
+  case response
+  when '1'
+    book_list()
+  when '2'
+    person_list()
+    display_menu()
+  when '3'
+    create_person()
+    display_menu()
+  when '4'
+    create_book()
+    display_menu()
+  when '5'
+    create_rental()
+    display_menu()
+  when '6'
+    rental_list()
+    display_menu()
+  when '7'
+    return
+  else
+    puts "invalid input, try again"
+    puts
+    display_menu()
+  end
+end
+
+display_menu()
