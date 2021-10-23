@@ -54,3 +54,44 @@ def create_book
     create_book()
   end
 end
+
+def create_rental
+  persons = Person.list
+  books = Book.list
+
+  puts "Select a book from the following list by number:"
+  books.each do |book, i|
+    puts "#{i}) ID: #{book.id}, Title: #{book.title}, Author: #{book.author}\n"
+  end
+  
+  puts
+  book = gets.chomp
+
+  if book.match(/[0-9]/) && book.to_i < book.length
+    book = book.to_i
+  else
+    puts "Invalid input, try again"
+    create_rental()
+  end
+
+  puts "Select a book from the following list by number:"
+  persons.each do |person|
+    result = person.instance_of?(Student) ? "[STUDENT]" : "[TEACHER]"
+    puts "#{result} ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
+  end
+
+  puts
+  person = gets.chomp
+
+  if person.match(/[0-9]/) && person.to_i < person.length
+    person = person.to_i
+  else
+    puts "Invalid input, try again"
+    create_rental()
+  end
+
+  print "Date: "
+  date = gets.chomp
+
+  Rental.new(date, books[book], persons[person])
+end
