@@ -134,6 +134,7 @@ def person_list
     puts 'No persons yet'
     puts
   end
+  display_menu
 end
 
 def create_person
@@ -152,7 +153,6 @@ def create_person
     sleep 1
     create_person
   end
-  display_menu
 end
 
 def display_menu
