@@ -134,7 +134,6 @@ def person_list
     puts 'No persons yet'
     puts
   end
-  display_menu
 end
 
 def create_person

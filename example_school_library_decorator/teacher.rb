@@ -1,4 +1,4 @@
-require './person'
+require_relative './person'
 
 class Teacher < Person
   # rubocop:disable Style/OptionalBooleanParameter
