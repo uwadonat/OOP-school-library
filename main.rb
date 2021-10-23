@@ -35,3 +35,22 @@ def create_teacher
   puts
   teacher = Teacher.new(age, specialization, name)
 end
+
+def create_book
+  print "Title: "
+  title = gets.chomp
+  puts
+  print "Author: "
+  author = gets.chomp
+  puts
+  book = Book.new(author, title)
+
+  if book
+    puts 'Book created successfully!'
+    puts
+  else
+    puts 'Invalid inputs try again'
+    sleep 1
+    create_book()
+  end
+end
