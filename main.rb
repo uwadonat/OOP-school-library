@@ -24,3 +24,14 @@ def create_student
   end
   Student.new(age, Classroom.new("Comics"), name, permission)
 end
+
+def create_teacher
+  print "Age: "
+  age = gets.chomp
+  print "Name: "
+  name = gets.chomp
+  print "Specialization: "
+  specialization = gets.chomp
+  puts
+  teacher = Teacher.new(age, specialization, name)
+end
