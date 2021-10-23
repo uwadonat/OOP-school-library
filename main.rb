@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative './example_school_library_decorator/book'
 require_relative './example_school_library_decorator/person'
 require_relative './example_school_library_decorator/student'
