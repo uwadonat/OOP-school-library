@@ -16,47 +16,41 @@ def create_student
   age = gets.chomp
   print 'Name: '
   name = gets.chomp
-  print 'Has parent permission? [Y/N]: '
+  print 'Has parent permission? [Y/N]:\n'
   permission = gets.chomp
-  puts
   case permission
   when 'y', 'Y'
     permission = true
   when 'n', 'N'
     permission = false
   else
-    puts 'Invalid input, try again'
-    puts
+    puts 'Invalid input, try again\n'
     create_student
   end
   Student.new(age, Classroom.new('Comics'), name, permission)
 end
 
 def create_teacher
-  print 'Age: '
+  print 'Age: \n'
   age = gets.chomp
-  print 'Name: '
+  print 'Name: \n'
   name = gets.chomp
-  print 'Specialization: '
+  print 'Specialization: \n'
   specialization = gets.chomp
-  puts
   Teacher.new(age, specialization, name)
 end
 
 def create_book
-  print 'Title: '
+  print 'Title: \n'
   title = gets.chomp
-  puts
-  print 'Author: '
+  print 'Author: \n'
   author = gets.chomp
-  puts
   book = Book.new(author, title)
 
   if book
-    puts 'Book created successfully!'
-    puts
+    puts 'Book created successfully!\n'
   else
-    puts 'Invalid inputs try again'
+    puts 'Invalid inputs try again\n'
     sleep 1
     create_book
   end
@@ -66,24 +60,22 @@ end
 def create_rental
   persons = Person.list
   books = Book.list
-  puts 'Select a book from the following list by number:'
+  puts 'Select a book from the following list by number:\n'
   books.each_with_index do |book, i|
     puts "#{i}) ID: #{book.id}, Title: #{book.title}, Author: #{book.author}\n"
   end
-  puts
   book = gets.chomp
-  puts 'Select a book from the following list by number:'
+  puts 'Select a book from the following list by number:\n'
   persons.each_with_index do |person, i|
     result = person_instance?(person)
-    puts "#{i} #{result} ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
+    puts "#{i} #{result} ID: #{person.id}, Name: #{person.name}, Age: #{person.age}\n"
   end
-  puts
   person = gets.chomp
   if (person.match(/[0-9]/) && person.to_i < person.length) && (book.match(/[0-9]/) && book.to_i < book.length)
     person = person.to_i
     book = book.to_i
   else
-    puts 'Invalid input, try again'
+    puts 'Invalid input, try again\n'
     create_rental
   end
   print 'Date: '
