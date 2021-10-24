@@ -9,7 +9,7 @@ class Book
     @rentals = []
     @title = title
     @author = author
-    @book_list << self
+    Book.add_book(self)
   end
 
   def add_rental(person, date)
@@ -18,5 +18,9 @@ class Book
 
   def self.list
     @book_list
+  end
+
+  def self.add_book(book)
+    @book_list << book
   end
 end

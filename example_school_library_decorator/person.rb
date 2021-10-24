@@ -15,7 +15,7 @@ class Person
     @name = name
     @parent_permission = parent_permission
     @rentals = []
-    @person_list << self
+    Person.add_person(self)
   end
 
   def add_rental(book, date)
@@ -32,6 +32,10 @@ class Person
 
   def self.list
     @person_list
+  end
+
+  def self.add_person(person)
+    @person_list << person
   end
 
   private
