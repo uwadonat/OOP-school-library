@@ -8,9 +8,7 @@ require 'date'
 class Student < Person
   attr_accessor :classroom
 
-  # rubocop:disable Style/OptionalBooleanParameter
-  def initialize(age, classroom, name = 'Unknown', parent_permission = true)
-    # rubocop:enable Style/OptionalBooleanParameter
+  def initialize(age, classroom, name = 'Unknown', parent_permission: true)
     super(age, name, parent_permission)
     @classroom = classroom
   end
@@ -19,10 +17,8 @@ class Student < Person
     "¯\(ツ)/¯"
   end
 
-  # rubocop:disable Lint/DuplicateMethods
-  def classroom(classroom)
+  def add_student_to_classroom(classroom)
     @classroom = classroom
-    # rubocop:enable Lint/DuplicateMethods
     classroom.students.push(self) unless classroom.students.include?(self)
   end
 end
