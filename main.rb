@@ -7,7 +7,7 @@ require_relative './example_school_library_decorator/rental'
 
 # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity
 
-def person_instance(person)
+def person_instance?(person)
   person.instance_of?(Student) ? '[STUDENT]' : '[TEACHER]'
 end
 
@@ -67,20 +67,21 @@ def create_rental
   persons = Person.list
   books = Book.list
   puts 'Select a book from the following list by number:'
-  books.each do |book, i|
+  books.each_with_index do |book, i|
     puts "#{i}) ID: #{book.id}, Title: #{book.title}, Author: #{book.author}\n"
   end
   puts
   book = gets.chomp
   puts 'Select a book from the following list by number:'
-  persons.each do |person|
-    result = person_instance(person)
-    puts "#{result} ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
+  persons.each_with_index do |person, i|
+    result = person_instance?(person)
+    puts "#{i} #{result} ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
   end
   puts
   person = gets.chomp
   if (person.match(/[0-9]/) && person.to_i < person.length) && (book.match(/[0-9]/) && book.to_i < book.length)
     person = person.to_i
+    book = book.to_i
   else
     puts 'Invalid input, try again'
     create_rental
@@ -127,7 +128,7 @@ end
 def person_list
   persons = Person.list
   persons.each do |person|
-    result = person_instance(person)
+    result = person_instance?(person)
     puts "#{result} ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
   end
   if persons.length.zero?
@@ -153,6 +154,7 @@ def create_person
     sleep 1
     create_person
   end
+  display_menu
 end
 
 def display_menu
