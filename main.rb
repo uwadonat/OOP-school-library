@@ -92,7 +92,7 @@ def rental_list
   if id.match(/[0-9]/)
     id = id.to_i
   else
-    puts 'Invalid input, try again'
+    puts 'Invalid input, try again\n'
     rental_list
   end
 
@@ -100,7 +100,7 @@ def rental_list
 
   person[0].rentals.each do |rental|
     book = rental.book
-    puts "Date: #{rental.date}, Book: \"#{book.title}\" by #{book.author}"
+    puts "Date: #{rental.date}, Book: \"#{book.title}\" by #{book.author}\n"
   end
   display_menu
 end
@@ -111,8 +111,7 @@ def book_list
     puts "ID: #{book.id}, Title: #{book.title}, Author: #{book.author}\n"
   end
   if books.length.zero?
-    puts 'No books yet'
-    puts
+    puts 'No books yet\n'
   end
   display_menu
 end
@@ -124,16 +123,14 @@ def person_list
     puts "#{result} ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
   end
   if persons.length.zero?
-    puts 'No persons yet'
-    puts
+    puts 'No persons yet\n'
   end
   display_menu
 end
 
 def create_person
-  print 'Do you want to create a Student (1) or a Teacher (2)? [Input the number]: '
+  print 'Do you want to create a Student (1) or a Teacher (2)? [Input the number]:\n'
   input = gets.chomp
-  puts
 
   case input
   when '1'
@@ -141,8 +138,7 @@ def create_person
   when '2'
     create_teacher
   else
-    puts 'Invalid input, please try again!'
-    puts
+    puts 'Invalid input, please try again!\n'
     sleep 1
     create_person
   end
@@ -157,9 +153,8 @@ def display_menu
   puts '4 - Create a book'
   puts '5 - Create a rental'
   puts '6 - List all rentals for a given person id'
-  puts '7 - Exit'
+  puts '7 - Exit\n'
   response = gets.chomp
-  puts
   case response
   when '1'
     book_list
@@ -176,8 +171,7 @@ def display_menu
   when '7'
     nil
   else
-    puts 'invalid input, try again'
-    puts
+    puts 'invalid input, try again\n'
     display_menu
   end
 end
