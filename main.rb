@@ -84,13 +84,12 @@ def create_rental
   display_menu
 end
 
-def validate_id(id)
+def validate_id?(id)
   if id.match(/[0-9]/)
-    id = id.to_i
-    return true
+    true
   else
     puts 'Invalid input, try again\n'
-    return false
+    false
   end
 end
 
@@ -99,7 +98,8 @@ def rental_list
   print 'ID of person: '
   id = gets.chomp
   puts
-  rental_list if not validate_id(id)
+  rental_list unless validate_id?(id)
+  id = id = id.to_i 
 
   person = persons.filter { |per| per.id == id }
 
