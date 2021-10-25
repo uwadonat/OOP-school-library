@@ -99,7 +99,7 @@ def rental_list
   id = gets.chomp
   puts
   rental_list unless validate_id?(id)
-  id = id = id.to_i 
+  id = id = id.to_i
 
   person = persons.filter { |per| per.id == id }
 
