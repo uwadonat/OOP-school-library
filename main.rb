@@ -110,9 +110,7 @@ def book_list
   books.each do |book|
     puts "ID: #{book.id}, Title: #{book.title}, Author: #{book.author}\n"
   end
-  if books.length.zero?
-    puts 'No books yet\n'
-  end
+  puts 'No books yet\n' if books.length.zero?
   display_menu
 end
 
@@ -122,9 +120,7 @@ def person_list
     result = person_instance?(person)
     puts "#{result} ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
   end
-  if persons.length.zero?
-    puts 'No persons yet\n'
-  end
+  puts 'No persons yet\n' if persons.length.zero?
   display_menu
 end
 
